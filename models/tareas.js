@@ -26,6 +26,10 @@ const Tarea = require("./tarea");
      this._listado = {};
    }
 
+   cargarTareasFromArray( tareas = [] ) {
+     
+   }
+
    crearTarea( desc = '') {
 
     const tarea = new Tarea( desc); 
