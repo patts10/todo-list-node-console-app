@@ -15,14 +15,14 @@ const main = async() => {
   const tareasDB = leerDB();
 
   if( tareasDB ) {
-    //?Establecer las tareas
+    //*Establecer las tareas
+    tareas.cargarTareasFromArray( tareasDB );
   }
 
-  await pausa();
 
   do {
 
-    // ?Print menu and get option
+    // *Print menu and get option
     opt = await inquirerMenu();
 
     switch (opt) {
@@ -33,13 +33,14 @@ const main = async() => {
         // console.log(desc);        
       break;
       case '2':
-        console.log( tareas.listadoArr );
+        // console.log( tareas.listadoArr );
+        console.log( tareas.listadoCompleto());
       break;
     }
 
     if( opt !== '0' ) await pausa();
 
-    // guardarDB( tareas.listadoArr );
+    guardarDB( tareas.listadoArr );
     
   } while ( opt !== '0');
 
