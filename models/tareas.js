@@ -27,6 +27,13 @@ const colors = require('colors');
      this._listado = {};
    }
 
+   borrarTarea( id ) {
+
+    if ( this._listado[id] ) {
+      delete this._listado[id];
+    }
+   }
+
    cargarTareasFromArray( tareas = [] ) {
 
     tareas.forEach( tarea => {
@@ -54,10 +61,31 @@ const colors = require('colors');
                         : 'Pendiente'.red;
       console.log((`${idx} ${desc} :: ${ estado }`));
     });
-   }
+  }
+  
+  listarpendientesCompletadas( completadas = true ) {
 
-   listarpendientesCompletadas( completadas = true ) {
-     
+    console.log();
+    let idx = 0;
+    this.listadoArr.forEach( tarea => {
+      const { desc, completadoEn } = tarea;
+      const estado = ( completadoEn )
+                        ? 'Completada'.green
+                        : 'Pendiente'.red;
+      if( completadas ) {
+
+        if (completadoEn) {
+          idx ++;
+          console.log((`${(idx + '.').green} ${desc} :: ${ estado }`));
+        }
+      } else {
+        if (!completadoEn) {
+          idx ++;
+          console.log((`${(idx + '.').green} ${desc} :: ${ estado }`));
+        }
+      }
+    });
+    idx = 0;
    }
 
 
