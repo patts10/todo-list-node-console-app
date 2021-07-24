@@ -76,7 +76,7 @@ const colors = require('colors');
 
         if (completadoEn) {
           idx ++;
-          console.log((`${(idx + '.').green} ${desc} :: ${ estado }`));
+          console.log((`${(idx + '.').green} ${desc} :: ${ completadoEn.green }`));
         }
       } else {
         if (!completadoEn) {
@@ -85,7 +85,26 @@ const colors = require('colors');
         }
       }
     });
-    idx = 0;
+   }
+
+   toggleCompletadas( ids = [] ) {
+
+    ids.forEach( id => {
+
+      const tarea = this._listado[id];
+
+      if ( !tarea.completadoEn ) {
+        tarea.completadoEn = new Date().toISOString();
+      }
+    });
+
+    this.listadoArr.forEach( tarea => {
+
+      if ( !ids.includes(tarea.id) ) {
+        this._listado[tarea.id].completadoEn = null;
+    }
+    })
+
    }
 
 
